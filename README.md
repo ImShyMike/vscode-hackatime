@@ -1,9 +1,5 @@
 # Hackatime for Visual Studio Code
 
-[![Version](https://wakatime.com/shields-proxy/visual-studio-marketplace/v/HackClub.vscode-hackatime.png)](https://marketplace.visualstudio.com/items?itemName=HackClub.vscode-hackatime)
-[![Installs](https://wakatime.com/shields-proxy/visual-studio-marketplace/i/HackClub.vscode-hackatime.png)](https://marketplace.visualstudio.com/items?itemName=HackClub.vscode-hackatime)
-[![Hackatime](https://wakatime.com/badge/github/wakatime/vscode-wakatime.png?style=flat-square&branch=master)](https://wakatime.com/badge/github/wakatime/vscode-wakatime)
-
 [Hackatime][hackatime] is an open source VS Code plugin for metrics, insights, and time tracking automatically generated from your programming activity.
 
 ## Installation
@@ -12,25 +8,21 @@
 
    ![type install](./images/type-install.png)
 
-2. Type `wakatime` and hit `enter`.
-
-   ![type wakatime](./images/type-wakatime.png)
+2. Type `hackatime` and hit `enter`.
 
 3. Enter your [api key][api key], then press `enter`.
 
    > (If you’re not prompted, press `F1` or `⌘ + Shift + P` then type `Hackatime API Key`.)
 
-4. Use VSCode and your coding activity will be displayed on your [Hackatime dashboard](https://wakatime.com)
+4. Use VSCode and your coding activity will be displayed on your [Hackatime dashboard](hhttps://hackatime.hackclub.comm)
 
 ## Usage
 
-Visit [https://wakatime.com](https://wakatime.com) to see your coding activity.
-
-![Project Overview](https://wakatime.com/static/img/ScreenShots/Screen-Shot-2016-03-21.png)
+Visit [https://hackatime.hackclub.com](https://hackatime.hackclub.com) to see your coding activity.
 
 ## Configuring
 
-VS Code specific settings are available from `⌘ + Shift + P`, then typing `wakatime`.
+VS Code specific settings are available from `⌘ + Shift + P`, then typing `hackatime`.
 
 For example, to hide today's coding activity in your status bar:
 
@@ -40,8 +32,8 @@ Press `⌘ + Shift + P` then set `Hackatime: Status Bar Coding Activity` to `fal
 
 You can customize the position and priority of the Hackatime status bar item:
 
-- **Alignment**: Set `wakatime.align` to `left` or `right` to control which side of the status bar shows the Hackatime item
-- **Priority**: Set `wakatime.alignPriority` to a number to control the order (higher values appear more to the left)
+- **Alignment**: Set `hackatime.align` to `left` or `right` to control which side of the status bar shows the Hackatime item
+- **Priority**: Set `hackatime.alignPriority` to a number to control the order (higher values appear more to the left)
 
 Both settings require restarting VS Code to take effect.
 
@@ -49,7 +41,7 @@ Extension settings are stored in the INI file at `$HOME/.wakatime.cfg`.
 
 More information can be found from [wakatime-cli][wakatime-cli configs].
 
-If using an online IDE like [gitpods](https://gitpod.io/), add your [api key][api key] to global ENV key `WAKATIME_API_KEY`.
+If using an online IDE like [gitpods](https://gitpod.io/), add your [api key][api key] to global ENV key `HACKATIME_API_KEY`.
 
 Notes:
 
@@ -68,7 +60,7 @@ Next, open your Developer Console to view logs and errors:
 
 `Help → Toggle Developer Tools`
 
-Errors outside the scope of vscode-wakatime go to `$HOME/.wakatime/wakatime.log` from [wakatime-cli][wakatime-cli help].
+Errors outside the scope of vscode-hackatime go to `$HOME/.wakatime/wakatime.log` from [wakatime-cli][wakatime-cli help].
 
 If your error message contains "won't send heartbeat due to backoff" then delete your `~/.wakatime/wakatime-internal.cfg` file to trigger an API connection so we can see the real error message.
 
@@ -100,8 +92,8 @@ Please search [existing issues][issues] before creating a new one.
 
 To run from source:
 
-1. `git clone git@github.com:wakatime/vscode-wakatime.git`
-2. `cd vscode-wakatime`
+1. `git clone git@github.com:ImShyMike/vscode-hackatime.git`
+2. `cd vscode-hackatime`
 3. `npm install`
 4. `npm run watch`
 5. Install the extension from the marketplace
@@ -109,8 +101,8 @@ To run from source:
 
 Or to run the web version from source:
 
-1. `git clone git@github.com:wakatime/vscode-wakatime.git`
-2. `cd vscode-wakatime`
+1. `git clone git@github.com:ImShyMike/vscode-hackatime.git`
+2. `cd vscode-hackatime`
 3. `npm install`
 4. `npm run compile`
 5. `npm run open-in-browser`

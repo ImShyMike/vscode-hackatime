@@ -330,7 +330,7 @@ export class Options {
   public getApiKeyFromEnv(): string {
     if (this.cache.api_key_from_env !== undefined) return this.cache.api_key_from_env;
 
-    this.cache.api_key_from_env = process.env.WAKATIME_API_KEY || '';
+    this.cache.api_key_from_env = process.env.HACKATIME_API_KEY || '';
 
     return this.cache.api_key_from_env;
   }
