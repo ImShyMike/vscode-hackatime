@@ -321,6 +321,8 @@ export class Hackatime {
 
       this.logger.debug('Successfully obtained API key from OAuth');
       this.options.setSetting('settings', 'api_key', apiKey, false);
+      this.options.setSetting('settings', 'heartbeat_rate_limit_seconds', '30', false);
+      this.options.setSetting('settings', 'exclude_unknown_project', 'true', false);
       vscode.window.showInformationMessage('Successfully logged in to Hackatime!');
       this.updateStatusBarText();
     } catch (error) {
