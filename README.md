@@ -10,11 +10,11 @@
 
 2. Type `hackatime` and hit `enter`.
 
-3. Enter your [api key][api key], then press `enter`.
+3. Log in with your Hackatime account.
 
-   > (If you’re not prompted, press `F1` or `⌘ + Shift + P` then type `Hackatime API Key`.)
+   > (If you’re not prompted, press `F1` or `⌘ + Shift + P` then type `Hackatime Login`.)
 
-4. Use VSCode and your coding activity will be displayed on your [Hackatime dashboard](hhttps://hackatime.hackclub.comm)
+4. Use VSCode and your coding activity will be displayed on your [Hackatime dashboard](https://hackatime.hackclub.com)
 
 ## Usage
 
