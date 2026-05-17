@@ -345,7 +345,7 @@ export class Hackatime {
       this.options.setSetting('settings', 'heartbeat_rate_limit_seconds', '30', false);
       this.options.setSetting('settings', 'exclude_unknown_project', 'true', false);
       vscode.window.showInformationMessage('Successfully logged in to Hackatime!');
-      this.updateStatusBarText();
+      this.updateStatusBarText('Hackatime: Logged in!');
     } catch (error) {
       this.logger.error(`OAuth login failed: ${error}`);
       vscode.window.showErrorMessage(
