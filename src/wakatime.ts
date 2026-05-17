@@ -128,7 +128,7 @@ export class Hackatime {
 
   private setResourcesLocation() {
     const home = Desktop.getHomeDirectory();
-    const folder = path.join(home, '.hackatime');
+    const folder = path.join(home, '.wakatime');
 
     try {
       fs.mkdirSync(folder, { recursive: true });
