@@ -25,7 +25,7 @@ export function activate(ctx: vscode.ExtensionContext) {
 
   ctx.subscriptions.push(
     vscode.commands.registerCommand(COMMAND_LOGIN, function () {
-      hackatime.loginWithHackatime();
+      hackatime.promptForApiKey();
     }),
   );
 

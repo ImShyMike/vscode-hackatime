@@ -249,8 +249,25 @@ export class Hackatime {
     this.statusBarTeamOther.tooltip = tooltipText;
   }
 
-  public loginWithHackatime(): void {
+  public async loginWithHackatime(): Promise<void> {
     const redirectUri = `http://localhost:54321/callback`;
+
+    const choice = await vscode.window.showInformationMessage(
+      'Hackatime needs to open your browser to sign in. Continue?',
+      { modal: true },
+      'Open Browser',
+      'Enter API Key Manually',
+    );
+
+    if (choice === 'Enter API Key Manually') {
+      this.promptForApiKey();
+      return;
+    }
+
+    if (choice !== 'Open Browser') {
+      this.logger.debug('User cancelled Hackatime OAuth flow');
+      return;
+    }
 
     this.logger.debug('Starting Hackatime OAuth flow');
 
@@ -336,11 +353,28 @@ export class Hackatime {
   }
 
   public async promptForApiKey(hidden: boolean = true): Promise<void> {
+    const apiKeyUrl = 'https://hackatime.hackclub.com/my/wakatime_setup';
+    const choice = await vscode.window.showInformationMessage(
+      'You need a Hackatime API key to continue. Open the setup page in your browser to get one?',
+      { modal: true },
+      'Get API Key',
+      'I Have My API Key',
+    );
+
+    if (choice === undefined) {
+      vscode.window.setStatusBarMessage('Hackatime api key not provided');
+      return;
+    }
+
+    if (choice === 'Get API Key') {
+      await vscode.env.openExternal(vscode.Uri.parse(apiKeyUrl));
+    }
+
     let defaultVal = await this.options.getApiKey();
     if (Utils.apiKeyInvalid(defaultVal ?? undefined)) defaultVal = '';
     const promptOptions = {
       prompt: 'Hackatime Api Key',
-      placeHolder: 'Enter your api key from https://hackatime.hackclub.com/my/wakatime_setup',
+      placeHolder: `Enter your api key from ${apiKeyUrl}`,
       value: defaultVal!,
       ignoreFocusOut: true,
       password: hidden,
