@@ -3,9 +3,9 @@
   "displayName": "Hackatime",
   "description": "Metrics, insights, and time tracking automatically generated from your programming activity.",
   "version": "30.2.0",
-  "publisher": "Hack Club",
+  "publisher": "hackatime",
   "author": {
-    "name": "ImShyMike"
+    "name": "Hack Club"
   },
   "categories": [
     "Visualization",
