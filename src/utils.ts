@@ -21,7 +21,7 @@ export class Utils {
   }
 
   public static apiKeyInvalid(key?: string): string {
-    const err = 'Invalid api key... check https://hackatime.hackclub.com/my/wakatime_setup for your key';
+    const err = 'Invalid api key... check https://hackatime.hackclub.com/api-key for your key';
     if (!key) return err;
     const re = new RegExp(
       '^(waka_)?[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$',

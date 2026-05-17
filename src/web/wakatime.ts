@@ -187,7 +187,7 @@ export class Hackatime {
   }
 
   public async promptForApiKey(hidden: boolean = true): Promise<void> {
-    const apiKeyUrl = 'https://hackatime.hackclub.com/my/wakatime_setup';
+    const apiKeyUrl = 'https://hackatime.hackclub.com/api-key';
     const choice = await vscode.window.showInformationMessage(
       'You need a Hackatime API key to continue. Open the setup page in your browser to get one?',
       { modal: true },
