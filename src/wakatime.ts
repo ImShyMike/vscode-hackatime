@@ -178,6 +178,7 @@ export class Hackatime {
           this.updateStatusBarText('Hackatime Initializing...');
 
           this.checkApiKey();
+          this.checkUnauthorizedSettings();
 
           this.setupEventListeners();
 
@@ -547,6 +548,40 @@ export class Hackatime {
     this.options.hasApiKey((hasApiKey) => {
       if (!hasApiKey) this.loginWithHackatime();
     });
+  }
+
+  private checkUnauthorizedSettings(): void {
+    const unauthorizedSettings = [
+      'hide_file_names',
+      'hide_project_names'
+    ]
+
+    let found: string[] = [];
+    for (const settingName of unauthorizedSettings) {
+      this.options.getSetting('settings', settingName, false, (setting: Setting) => {
+        if (setting.value === 'true') {
+          found.push(settingName);
+        }
+      })
+    }
+
+    if (found.length > 0) {
+      vscode.window.showWarningMessage(
+        `The following WakaTime settings are not allowed by Hack Club programs:\n - ${found.join('\n - ')}`,
+        { modal: true },
+        'Ignore (NOT RECOMMENDED)',
+        'Fix Settings',
+      ).then((choice) => {
+        if (choice === 'Fix Settings') {
+          for (const settingName of found) {
+            this.options.setSetting('settings', settingName, 'false', false);
+          }
+          vscode.window.showInformationMessage('Fixed unauthorized settings!');
+        } else {
+          this.logger.warn(`User chose to ignore unauthorized settings: ${found.join(', ')}`);
+        }
+      });
+    }
   }
 
   private setStatusBarVisibility(isVisible: boolean): void {
