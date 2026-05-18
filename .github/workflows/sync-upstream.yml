@@ -12,49 +12,55 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout fork
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.SYNC_PAT }}
 
-      - name: Add upstream remote
+      - name: Configure git and add upstream
         run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote add upstream https://github.com/wakatime/vscode-wakatime.git || true
+          git fetch upstream --tags
 
-      - name: Fetch upstream
-        run: git fetch upstream
-
-      - name: Check if upstream differs
-        id: diff
+      - name: Check if upstream has new commits
+        id: check
         run: |
-          git checkout master
-          git fetch upstream
+          git checkout main
+          BEHIND=$(git rev-list --count main..upstream/master)
+          echo "behind=$BEHIND" >> "$GITHUB_OUTPUT"
+          echo "main is behind upstream/master by $BEHIND commit(s)"
 
-          if git diff --quiet master upstream/master; then
-            echo "changed=false" >> $GITHUB_OUTPUT
+      - name: Build sync branch (main + upstream)
+        if: steps.check.outputs.behind != '0'
+        id: merge
+        run: |
+          git checkout -B sync-upstream main
+          if git merge --no-edit upstream/master; then
+            echo "conflicts=false" >> "$GITHUB_OUTPUT"
           else
-            echo "changed=true" >> $GITHUB_OUTPUT
+            # Commit conflicts so the PR surfaces them for manual resolution.
+            git add -A
+            git -c core.editor=true commit -m "Merge upstream/master (CONFLICTS — resolve in PR)"
+            echo "conflicts=true" >> "$GITHUB_OUTPUT"
           fi
+          git push origin sync-upstream --force-with-lease
 
-      - name: Push sync branch
-        if: steps.diff.outputs.changed == 'true'
-        run: |
-          git checkout -B sync-upstream upstream/master
-          git push origin sync-upstream --force
-
-      - name: Create Pull Request
-        if: steps.diff.outputs.changed == 'true'
+      - name: Open or update Pull Request
+        if: steps.check.outputs.behind != '0'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.SYNC_PAT }}
         run: |
-          if [ -z "$(gh pr list --head sync-upstream --base master --state open --json number --jq '.[].number')" ]; then
-            gh pr create \
-              --base master \
-              --head sync-upstream \
-              --title "Sync upstream changes" \
-              --body "Automated upstream sync from wakatime/vscode-wakatime."
+          BODY="Automated merge of \`wakatime/vscode-wakatime@master\` into \`main\`."
+          if [ "${{ steps.merge.outputs.conflicts }}" = "true" ]; then
+            BODY="$BODY"$'\n\n⚠️ Merge conflicts present — resolve before merging.'
+          fi
+          if [ -z "$(gh pr list --head sync-upstream --base main --state open --json number --jq '.[].number')" ]; then
+            gh pr create --base main --head sync-upstream \
+              --title "Sync upstream changes" --body "$BODY"
           else
-            echo "PR already exists for sync-upstream -> master"
+            gh pr edit sync-upstream --body "$BODY"
           fi
