@@ -1,6 +1,6 @@
 {
-  "name": "hackatime-tracker",
-  "displayName": "Hackatime Tracker",
+  "name": "hackatime-time-tracker",
+  "displayName": "Hackatime Time Tracker",
   "description": "Metrics, insights, and time tracking automatically generated from your programming activity.",
   "version": "30.2.0",
   "publisher": "hackatime",
