@@ -1,6 +1,6 @@
 {
-  "name": "vscode-hackatime-extension-dev",
-  "displayName": "Hackatime (DEV)",
+  "name": "hackatime-recorder",
+  "displayName": "Hackatime Recorder",
   "description": "Metrics, insights, and time tracking automatically generated from your programming activity.",
   "version": "30.2.0",
   "publisher": "hackatime",
@@ -34,7 +34,7 @@
   ],
   "homepage": "https://hackatime.hackclub.com",
   "bugs": {
-    "url": "https://github.com/ImShyMike/vscode-hackatime/issues",
+    "url": "https://github.com/hackclub/vscode-hackatime/issues",
     "email": "support@hackatime.hackclub.com"
   },
   "license": "BSD-3-Clause",
@@ -51,7 +51,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ImShyMike/vscode-hackatime.git"
+    "url": "https://github.com/hackclub/vscode-hackatime.git"
   },
   "engines": {
     "vscode": "^1.89.0",

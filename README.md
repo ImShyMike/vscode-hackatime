@@ -92,16 +92,16 @@ Please search [existing issues][issues] before creating a new one.
 
 To run from source:
 
-1. `git clone git@github.com:ImShyMike/vscode-hackatime.git`
+1. `git clone git@github.com:hackclub/vscode-hackatime.git`
 2. `cd vscode-hackatime`
 3. `npm install`
 4. `npm run watch`
 5. Install the extension from the marketplace
-6. Then symlink `~/.vscode/extensions/hackatime.vscode-hackatime-extension-dev-*/dist/extension.js` to `./dist/extension.js`
+6. Then symlink `~/.vscode/extensions/hackatime.hackatime-recorder-*/dist/extension.js` to `./dist/extension.js`
 
 Or to run the web version from source:
 
-1. `git clone git@github.com:ImShyMike/vscode-hackatime.git`
+1. `git clone git@github.com:hackclub/vscode-hackatime.git`
 2. `cd vscode-hackatime`
 3. `npm install`
 4. `npm run compile`
@@ -115,4 +115,4 @@ Or to run the web version from source:
 [how to debug]: https://hackatime.hackclub.com/docs
 [plugins status page]: https://hackatime.hackclub.com/docs
 [winca]: https://github.com/ukoloff/win-ca/tree/master/vscode
-[issues]: https://github.com/ImShyMike/vscode-hackatime/issues
+[issues]: https://github.com/hackclub/vscode-hackatime/issues
