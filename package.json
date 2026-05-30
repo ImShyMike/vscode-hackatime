@@ -1,6 +1,6 @@
 {
-  "name": "hackatime-recorder",
-  "displayName": "Hackatime Recorder",
+  "name": "hackatime-tracker",
+  "displayName": "Hackatime Tracker",
   "description": "Metrics, insights, and time tracking automatically generated from your programming activity.",
   "version": "30.2.0",
   "publisher": "hackatime",
@@ -69,6 +69,7 @@
     "publish:major": "npx vsce publish --allow-star-activation major && git push --tags",
     "publish:minor": "npx vsce publish --allow-star-activation minor && git push --tags",
     "publish:patch": "npx vsce publish --allow-star-activation patch && git push --tags",
+    "publish:web": "npx ovsx publish",
     "test": "npm run compile:dev && node ./node_modules/vscode/bin/test"
   },
   "contributes": {
